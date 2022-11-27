@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Route;
     // return User::all();
 // });
 
+
 Route::get("/users", function(){
     return User::all();
+});
+
+Route::get("/users/{id}", function($id){
+    return User::find($id);
 });
