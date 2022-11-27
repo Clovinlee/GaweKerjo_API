@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("user_id")->references("id")->on("users");
             $table->foreignId("chat_id")->references("id")->on("chats");
+            $table->string("message");
             $table->timestamps();
         });
     }
