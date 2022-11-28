@@ -27,3 +27,12 @@ Route::get("/users", function(){
 Route::get("/users/{id}", function($id){
     return User::find($id);
 });
+
+Route::post('/register', function (Request $r) {
+    $user=new User;
+    $user->name=$r->name;
+    $user->email=$r->email;
+    $user->password=$r->password;
+    $user->save();
+    return $user;
+});
