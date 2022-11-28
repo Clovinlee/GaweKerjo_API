@@ -26,7 +26,8 @@ class UserSeeder extends Seeder
             'gender' => "L",
             'notelp' => "0812323123",
             'birthdate' => date("Y-m-d", strtotime("2001-04-11")),
-            'password' => Hash::make('c'),
+            // 'password' => Hash::make('c'),
+            'password' => "c",
             'created_at' => Carbon::now(),
         ]);
 
@@ -37,7 +38,8 @@ class UserSeeder extends Seeder
             'gender' => "P",
             'notelp' => "9128391283",
             'birthdate' => date("Y-m-d", strtotime("1995-12-20")),
-            'password' => Hash::make('b'),
+            // 'password' => Hash::make('b'),
+            'password' => "b",
             'created_at' => Carbon::now(),
         ]);
     }
