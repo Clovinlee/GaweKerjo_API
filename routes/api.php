@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AchievementController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\SkillController;
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,19 +24,50 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get("/users", function(){
-    return User::all();
-});
+////////////////
+// USER
+////////////////
 
-Route::get("/users/{id}", function($id){
-    return User::find($id);
-});
+Route::get("/users",[UserController::class, "getUsers"]);
+Route::post("/register",[UserController::class, "register"]);
 
-Route::post('/register', function (Request $r) {
-    $user=new User;
-    $user->name=$r->name;
-    $user->email=$r->email;
-    $user->password=$r->password;
-    $user->save();
-    return $user;
-});
+// Route::post('/register', function (Request $r) {
+//     $user=new User;
+//     $user->name=$r->name;
+//     $user->email=$r->email;
+//     $user->password=$r->password;
+//     $user->save();
+//     return $user;
+// });
+
+////////////////
+
+////////////////
+// POST
+////////////////
+Route::get("/posts",[PostController::class,"getPosts"]);
+Route::post("/addPost",[PostController::class,"addPost"]);
+
+Route::get("/postLikes",[PostController::class,"getPostLikes"]);
+Route::post("/addLike",[PostController::class,"addPostLike"]);
+////////////////
+
+////////////////
+// EDUCATION
+////////////////
+Route::get("/educations",[UserController::class, "getEducations"]);
+Route::post("/addEducation",[UserController::class, "addEducation"]);
+////////////////
+
+////////////////
+// ACHIEVEMENT
+////////////////
+Route::get("/achievements",[AchievementController::class, "getAchievements"]);
+Route::post("/addAchievement",[AchievementController::class, "addAchievement"]);
+////////////////
+
+////////////////
+// SKILL
+////////////////
+Route::get("/skills",[SkillController::class, "getSkills"]);
+////////////////
