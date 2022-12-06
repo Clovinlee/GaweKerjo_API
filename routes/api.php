@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AchievementController;
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserController;
@@ -46,28 +48,49 @@ Route::post("/register",[UserController::class, "register"]);
 // POST
 ////////////////
 Route::get("/posts",[PostController::class,"getPosts"]);
-Route::post("/addPost",[PostController::class,"addPost"]);
+Route::post("/addpost",[PostController::class,"addPost"]);
 
-Route::get("/postLikes",[PostController::class,"getPostLikes"]);
-Route::post("/addLike",[PostController::class,"addPostLike"]);
+Route::get("/postlikes",[PostController::class,"getPostLikes"]);
+Route::post("/addlike",[PostController::class,"addPostLike"]);
 ////////////////
 
 ////////////////
 // EDUCATION
 ////////////////
 Route::get("/educations",[UserController::class, "getEducations"]);
-Route::post("/addEducation",[UserController::class, "addEducation"]);
+Route::post("/addeducation",[UserController::class, "addEducation"]);
 ////////////////
 
 ////////////////
 // ACHIEVEMENT
 ////////////////
 Route::get("/achievements",[AchievementController::class, "getAchievements"]);
-Route::post("/addAchievement",[AchievementController::class, "addAchievement"]);
+Route::post("/addachievement",[AchievementController::class, "addAchievement"]);
 ////////////////
 
 ////////////////
 // SKILL
 ////////////////
 Route::get("/skills",[SkillController::class, "getSkills"]);
+Route::get("/userskill",[SkillController::class, "getUserSkill"]);
+Route::post("/adduserskill",[SkillController::class, "addUserSkill"]);
+////////////////
+
+////////////////
+// CHATS
+////////////////
+Route::get("/chats",[ChatController::class, "getHChats"]);
+Route::get("/userchat",[ChatController::class, "getDChats"]);
+Route::post("/addchat",[ChatController::class, "addHchat"]);
+Route::post("/adduserchat",[ChatController::class, "addDchat"]);
+
+// TODO: KErja comment
+
+////////////////
+
+////////////////
+// ORGANIZATIONS
+////////////////
+Route::get("/organizations",[OrganizationController::class, "getOrganizations"]);
+Route::post("/addorganizations",[OrganizationController::class, "addOrganization"]);
 ////////////////
