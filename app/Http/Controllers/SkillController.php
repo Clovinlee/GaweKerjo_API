@@ -37,7 +37,19 @@ class SkillController extends Controller
 
     }
 
-    public function getSkills(){
-        return Skill::all();
+    public function getSkills(Request $r){
+        $id = $r->id;
+        $name = $r->name;
+        $skill = Skill::all();
+
+        if($id != null){
+            $skill = $skill->where("id",$id);
+        }
+        if($name != null){
+            $skill = $skill->where("name",$name);
+        }
+
+        $skill = $skill->values();
+        return $skill;
     }
 }
