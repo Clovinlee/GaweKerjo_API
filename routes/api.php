@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SkillController;
@@ -84,8 +85,11 @@ Route::get("/userchat",[ChatController::class, "getDChats"]);
 Route::post("/addchat",[ChatController::class, "addHchat"]);
 Route::post("/adduserchat",[ChatController::class, "addDchat"]);
 
-// TODO: KErja comment
-
+////////////////
+// COMMENT
+////////////////
+Route::get("/comments",[CommentController::class, "getComments"]);
+Route::post("/addcomments",[CommentController::class, "addComment"]);
 ////////////////
 
 ////////////////
