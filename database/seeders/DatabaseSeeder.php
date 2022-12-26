@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call([UserSeeder::class, SkillSeeder::class, PostSeeder::class, CompanySeeder::class]);
+        date_default_timezone_set('Asia/Jakarta');
+
+        $this->call([UserSeeder::class, SkillSeeder::class, PostSeeder::class, CompanySeeder::class, LanguageSeeder::class]);
     }
 }

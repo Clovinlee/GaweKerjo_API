@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SkillController;
@@ -93,4 +94,10 @@ Route::post("/adduserchat",[ChatController::class, "addDchat"]);
 ////////////////
 Route::get("/organizations",[OrganizationController::class, "getOrganizations"]);
 Route::post("/addorganizations",[OrganizationController::class, "addOrganization"]);
+////////////////
+
+////////////////
+// LANGUAGES
+////////////////
+Route::get("/languages",[LanguageController::class, "getLanguages"]);
 ////////////////
