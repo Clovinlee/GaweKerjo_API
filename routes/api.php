@@ -4,6 +4,7 @@ use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SkillController;
@@ -44,6 +45,18 @@ Route::post("/register",[UserController::class, "register"]);
 //     return $user;
 // });
 
+////////////////
+
+////////////////
+// COMPANY
+////////////////
+
+// request : id, email, password 
+Route::get("/companies",[CompanyController::class, "getCompany"]);
+// name, email, notelp, password
+Route::post("/companyRegister",[CompanyController::class, "register"]);
+// search LIKE name
+Route::get("/searchCompany",[CompanyController::class, "searchCompany"]);
 ////////////////
 
 ////////////////

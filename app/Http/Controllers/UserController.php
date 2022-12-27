@@ -12,17 +12,30 @@ class UserController extends Controller
         $id = $r->id;
         $email = $r->email;
         $password = $r->password;
-        $usr = User::all();
-        if($id != null){
-            $usr = $usr->where("id",$id);
+
+        try {
+            $usr = User::all();
+            if($id != null){
+                $usr = $usr->where("id",$id);
+            }
+            if($email != null){
+                $usr = $usr->where("email",$email);
+            }
+            if($password != null){
+                $usr = $usr->where("password",$password);
+            }
+            $usr = $usr->values();
+            
+            return makeJson(200, "Success get user", $usr);
+        } catch (\Throwable $th) {
+            return makeJson(400, $th->getMessage(), null);
         }
-        if($email != null){
-            $usr = $usr->where("email",$email);
-        }
-        if($password != null){
-            $usr = $usr->where("password",$password);
-        }
-        $usr = $usr->values();
+    }
+
+    public function searchUser(Request $r){
+        $name = $r->name;
+        $email = $r->email;
+        $usr = User::where("name","like","%".$name."%")->where("email","like","%".$email."%")->get();
         return $usr;
     }
 

@@ -25,5 +25,14 @@ class CompanySeeder extends Seeder
             "password"=>"istts",
             "created_at"=>Carbon::now()
         ]);
+
+        DB::table("companies")->insert([
+            "name"=>"Microsoft",
+            "email"=>"microsoft@com",
+            "description"=>"Windows is my windows",
+            "notelp"=>"01234",
+            "password"=>"microsoft",
+            "created_at"=>Carbon::now()
+        ]);
     }
 }
