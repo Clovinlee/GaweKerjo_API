@@ -39,6 +39,11 @@ class UserController extends Controller
     }
 
     public function register(Request $r){
+        $usr_exist = User::where("email",$r->email)->get();
+        if(count($usr_exist) <= 0){
+            return makeJson(400, "Error, email already used!", null);
+        }
+
         try {
             $user=new User;
             $user->name = $r->name;
