@@ -24,11 +24,10 @@ class UserController extends Controller
             if($password != null){
                 $usr = $usr->where("password",$password);
             }
-            $usr = $usr->values();
             
             return makeJson(200, "Success get user", $usr);
         } catch (\Throwable $th) {
-            return makeJson(400, $th->getMessage(), null);
+            return makeJson(400, "Register error, please contact administrator", null);
         }
     }
 
@@ -40,11 +39,20 @@ class UserController extends Controller
     }
 
     public function register(Request $r){
-        $user=new User;
-        $user->name=$r->name;
-        $user->email=$r->email;
-        $user->password=$r->password;
-        $user->save();
-        return $user;
+        try {
+            $user=new User;
+            $user->name = $r->name;
+            $user->email = $r->email;
+            $user->type = $r->type;
+            $user->password = $r->password;
+
+            $user->notelp = $r->notelp;
+
+            $user->save();
+
+            return makeJson(200, "Register Success", [$user]);
+        } catch (\Throwable $th) {
+            return makeJson(400, $th->getMessage(), null);
+        }
     }
 }

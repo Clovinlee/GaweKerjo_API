@@ -53,8 +53,6 @@ Route::post("/register",[UserController::class, "register"]);
 
 // request : id, email, password 
 Route::get("/companies",[CompanyController::class, "getCompany"]);
-// name, email, notelp, password
-Route::post("/companyRegister",[CompanyController::class, "register"]);
 // search LIKE name
 Route::get("/searchCompany",[CompanyController::class, "searchCompany"]);
 ////////////////

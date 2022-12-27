@@ -2,7 +2,7 @@
 
 function makeJson(int $status, string $message, $data){
     $json = [
-        "code"=>$status,
+        "status"=>$status,
         "message"=> $message,
         "data" => $data,
     ];
