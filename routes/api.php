@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Route;
 ////////////////
 
 Route::get("/users",[UserController::class, "getUsers"]);
+Route::get("/friend",[UserController::class,"getFriends"]);
 Route::post("/register",[UserController::class, "register"]);
 
 // Route::post('/register', function (Request $r) {

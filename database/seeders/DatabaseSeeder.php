@@ -23,6 +23,6 @@ class DatabaseSeeder extends Seeder
 
         date_default_timezone_set('Asia/Jakarta');
 
-        $this->call([UserSeeder::class, SkillSeeder::class, PostSeeder::class, LanguageSeeder::class]);
+        $this->call([UserSeeder::class, SkillSeeder::class, PostSeeder::class, LanguageSeeder::class,ChatSeeder::class]);
     }
 }

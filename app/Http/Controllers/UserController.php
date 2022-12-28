@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\chat;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -36,6 +37,18 @@ class UserController extends Controller
         $email = $r->email;
         $usr = User::where("name","like","%".$name."%")->where("email","like","%".$email."%")->get();
         return $usr;
+    }
+    public function getFriends(Request $r)
+    {
+        $id=$r->id;
+        $chat=chat::where("user_id",$id)
+        ->orwhere("recipient_id",$id)
+        ->get();
+        $friend=[];
+        foreach ($chat as $key => $c) {
+            array_push($friend,($id==$c->user_id) ? User::find($c->recipient_id) : User::find($c->user_id));
+        }
+        return makeJson(200,"Berhasil ambil data teman",$friend);
     }
 
     public function register(Request $r){
