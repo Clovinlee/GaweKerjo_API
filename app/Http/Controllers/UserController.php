@@ -50,7 +50,21 @@ class UserController extends Controller
         }
         return makeJson(200,"Berhasil ambil data teman",$friend);
     }
-
+    public function getNewFriend(Request $r)
+    {
+        $id=$r->id;
+        $chat=chat::where("user_id",$id)
+        ->orwhere("recipient_id",$id)
+        ->get();
+        $friend=[];
+        foreach ($chat as $key => $c) {
+            array_push($friend,($id==$c->user_id) ? User::find($c->recipient_id)->id : User::find($c->user_id)->id);
+        }
+        $new=User::whereNotIn('id',$friend)
+        ->whereNot('id',$id)
+        ->get();
+        return makeJson(200,"Berhasil ambil data teman baru",$new);
+    }
     public function register(Request $r){
         $usr_exist = User::where("email",$r->email)->get();
         if(count($usr_exist) > 0){
