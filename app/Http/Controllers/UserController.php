@@ -25,7 +25,7 @@ class UserController extends Controller
             if($password != null){
                 $usr = $usr->where("password",$password);
             }
-            
+            $usr = $usr->values();
             return makeJson(200, "Success get user", $usr);
         } catch (\Throwable $th) {
             return makeJson(400, "Register error, please contact administrator", null);
