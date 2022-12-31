@@ -18,7 +18,7 @@ class ChatController extends Controller
 
         $dc->save();
 
-        return $dc;
+        return makeJson(200,"Berhasil tambah chat",[$dc]);
     }
 
     public function addHchat(Request $r){
@@ -27,7 +27,7 @@ class ChatController extends Controller
         $hc->recipient_id = $r->recipient_id;
         $hc->save();
 
-        return $hc;
+        return makeJson(200,"Berhasil tambah chat",[$hc]);
     }
 
     public function getDChats(Request $r){
