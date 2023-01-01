@@ -18,7 +18,11 @@ return new class extends Migration
             $table->string("name");
             $table->string('email')->unique();
             $table->string("description")->nullable(true);
-            $table->string("notelp")->nullable(true);
+            $table->string("notelp");
+            $table->string("lokasi")->nullable(true);
+            $table->string("founded")->nullable(true);
+            //BIDANG KERJA E APA, IT, BISNIS, APA DSB
+            $table->string("industry")->nullable(true);
             $table->string('password');
             $table->timestamps();
         });

@@ -18,7 +18,7 @@ class ChatController extends Controller
 
         $dc->save();
 
-        return $dc;
+        return makeJson(200,"Berhasil tambah chat",[$dc]);
     }
 
     public function addHchat(Request $r){
@@ -27,45 +27,59 @@ class ChatController extends Controller
         $hc->recipient_id = $r->recipient_id;
         $hc->save();
 
-        return $hc;
+        return makeJson(200,"Berhasil tambah chat",[$hc]);
     }
 
     public function getDChats(Request $r){
         $user_id = $r->user_id;
         $chat_id = $r->chat_id;
-
         $dc = user_chat::all();
         
         if($user_id != null){
-            $dc = $dc->where("user_id",$user_id);
+            $hc=chat::where("user_id",$user_id)
+            ->orwhere("recipient_id",$user_id)
+            ->get();
+            $dc=[];
+            foreach ($hc as $key => $c) {
+                foreach ($c->dchat as $key => $d) {
+                    array_push($dc,$d);
+                }
+            }
         }
         if($chat_id != null){
             $dc = $dc->where("chat_id",$chat_id);
         }
 
-        $dc = $dc->values();
-
-        return $dc;
+        return makeJson(200,"Berhasil dapatkan detail chat",$dc);
     }
 
     public function getHChats(Request $r){
         $id = $r->id;
         $user_id = $r->user_id;
         $recipient_id = $r->recipient_id;
+        try {
+            $hc = chat::all();
 
-        $hc = chat::all();
-
-        if($id != null){
-            $hc = $hc->where("id",$id);
+            if($id != null){
+                $hc = $hc->where("id",$id);
+            }
+            if($user_id != null){
+                
+                $hc = chat::where("user_id",$user_id)
+                ->orwhere("recipient_id",$user_id)
+                ->get();
+                
+            }
+            if($recipient_id != null){
+                $hc = $hc->where("recipient_id", $recipient_id);
+            }
+            if(count($hc)==0){
+                $hc=[];
+            }
+            return makeJson(200,"Berhasil dapatkan chat",$hc);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return makeJson(400,"Gagal dapatkan chat",null);
         }
-        if($user_id != null){
-            $hc = $hc->where("user_id",$user_id);
-        }
-        if($recipient_id != null){
-            $hc = $hc->where("recipient_id", $recipient_id);
-        }
-        $hc = $hc->values();
-
-        return $hc;
     }
 }

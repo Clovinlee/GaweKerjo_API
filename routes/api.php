@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SkillController;
@@ -31,6 +34,8 @@ use Illuminate\Support\Facades\Route;
 ////////////////
 
 Route::get("/users",[UserController::class, "getUsers"]);
+Route::get("/friend",[UserController::class,"getFriends"]);
+Route::get("/newfriend",[UserController::class,"getNewFriend"]);
 Route::post("/register",[UserController::class, "register"]);
 
 // Route::post('/register', function (Request $r) {
@@ -42,6 +47,16 @@ Route::post("/register",[UserController::class, "register"]);
 //     return $user;
 // });
 
+////////////////
+
+////////////////
+// COMPANY
+////////////////
+
+// request : id, email, password 
+Route::get("/companies",[CompanyController::class, "getCompany"]);
+// search LIKE name
+Route::get("/searchCompany",[CompanyController::class, "searchCompany"]);
 ////////////////
 
 ////////////////
@@ -84,8 +99,11 @@ Route::get("/userchat",[ChatController::class, "getDChats"]);
 Route::post("/addchat",[ChatController::class, "addHchat"]);
 Route::post("/adduserchat",[ChatController::class, "addDchat"]);
 
-// TODO: KErja comment
-
+////////////////
+// COMMENT
+////////////////
+Route::get("/comments",[CommentController::class, "getComments"]);
+Route::post("/addcomments",[CommentController::class, "addComment"]);
 ////////////////
 
 ////////////////
@@ -93,4 +111,10 @@ Route::post("/adduserchat",[ChatController::class, "addDchat"]);
 ////////////////
 Route::get("/organizations",[OrganizationController::class, "getOrganizations"]);
 Route::post("/addorganizations",[OrganizationController::class, "addOrganization"]);
+////////////////
+
+////////////////
+// LANGUAGES
+////////////////
+Route::get("/languages",[LanguageController::class, "getLanguages"]);
 ////////////////
