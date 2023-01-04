@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->references("id")->on("users");
-            $table->foreignId("company_id")->nullable()->references("id")->on("companies");
+            $table->foreignId("company_id")->nullable(true)->references("id")->on("users");
             $table->string("name");
             $table->string("description");
             $table->date("date_start");
