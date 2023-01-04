@@ -87,4 +87,21 @@ class UserController extends Controller
             return makeJson(400, $th->getMessage(), null);
         }
     }
+
+    public function editProfile(Request $r){
+
+        try {
+            $user = User::find($r->id);
+            $user->name = $r->name;
+            $user->description = $r->description;
+            $user->notelp = $r->notelp;
+            $user->save();
+
+            return makeJson(200, "Edit Success", [$user]);
+        } catch (\Throwable $th) {
+            return makeJson(400, $th->getMessage(), null);
+        }
+
+
+    }
 }
