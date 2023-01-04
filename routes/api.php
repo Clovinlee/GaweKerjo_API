@@ -90,6 +90,7 @@ Route::post("/addachievement",[AchievementController::class, "addAchievement"]);
 Route::get("/skills",[SkillController::class, "getSkills"]);
 Route::get("/userskill",[SkillController::class, "getUserSkill"]);
 Route::post("/adduserskill",[SkillController::class, "addUserSkill"]);
+Route::get("/getallskil",[SkillController::class, "getAllSkill"]);
 ////////////////
 
 ////////////////
