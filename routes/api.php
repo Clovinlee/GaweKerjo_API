@@ -5,6 +5,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PostController;
@@ -127,4 +128,11 @@ Route::get("/languages",[LanguageController::class, "getLanguages"]);
 ////////////////
 Route::get("/follows",[FollowController::class, "getFollows"]);
 Route::post("/addfollows",[FollowController::class, "addFollows"]);
+////////////////
+
+////////////////
+// EXPERIENCE
+////////////////
+Route::get("/experiences",[ExperienceController::class, "getExperience"]);
+Route::post("/addexperiences",[ExperienceController::class, "addExperience"]);
 ////////////////
