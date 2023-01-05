@@ -44,7 +44,7 @@ class PostController extends Controller
             $post = $post->where("title",$title);
         }
         $post = $post->values();
-        return $post;
+        return makeJson(200, "Sukses get posts",$post);
     }
 
     public function addPost(Request $r){
@@ -53,6 +53,6 @@ class PostController extends Controller
         $post->title = $r->title;
         $post->body = $r->body;
         $post->like_count = 0;
-        return $post;
+        return makeJson(200,"Sukses add post",[$post]);
     }
 }

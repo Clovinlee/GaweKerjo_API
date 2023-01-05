@@ -15,7 +15,7 @@ class AchievementController extends Controller
         $ach->description = $r->description;
         $ach->date = $r->date;
         $ach->save();
-        return $ach;
+        return makeJson(200, "Sukses add achievement", [$ach]);
     }
 
     public function getAchievements(Request $r){
@@ -29,6 +29,6 @@ class AchievementController extends Controller
             $ach = $ach->where("user_id",$user_id);
         }
         $ach = $ach->values();
-        return $ach;
+        return makeJson(200, "Sukses get achievement", [$ach]);
     }
 }

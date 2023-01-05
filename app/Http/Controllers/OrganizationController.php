@@ -17,7 +17,7 @@ class OrganizationController extends Controller
         $o->date_end = $r->date_end;
         $o->save();
 
-        return $o;
+        return makeJson(200, "Sukses add organization", [$o]);
     }
 
     public function getOrganizations(Request $r){
@@ -33,6 +33,6 @@ class OrganizationController extends Controller
         }
         $o = $o->values();
 
-        return $o;
+        return makeJson(200,"Sukses get organization",$o);
     }
 }

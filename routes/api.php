@@ -5,6 +5,8 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SkillController;
@@ -37,6 +39,7 @@ Route::get("/users",[UserController::class, "getUsers"]);
 Route::get("/friend",[UserController::class,"getFriends"]);
 Route::get("/newfriend",[UserController::class,"getNewFriend"]);
 Route::post("/register",[UserController::class, "register"]);
+Route::post("/editprofile",[UserController::class, "editProfile"]);
 
 // Route::post('/register', function (Request $r) {
 //     $user=new User;
@@ -53,7 +56,7 @@ Route::post("/register",[UserController::class, "register"]);
 // COMPANY
 ////////////////
 
-// request : id, email, password 
+// request : id, email, password
 Route::get("/companies",[CompanyController::class, "getCompany"]);
 // search LIKE name
 Route::get("/searchCompany",[CompanyController::class, "searchCompany"]);
@@ -89,6 +92,7 @@ Route::post("/addachievement",[AchievementController::class, "addAchievement"]);
 Route::get("/skills",[SkillController::class, "getSkills"]);
 Route::get("/userskill",[SkillController::class, "getUserSkill"]);
 Route::post("/adduserskill",[SkillController::class, "addUserSkill"]);
+Route::get("/getallskil",[SkillController::class, "getAllSkill"]);
 ////////////////
 
 ////////////////
@@ -117,4 +121,18 @@ Route::post("/addorganizations",[OrganizationController::class, "addOrganization
 // LANGUAGES
 ////////////////
 Route::get("/languages",[LanguageController::class, "getLanguages"]);
+////////////////
+
+////////////////
+// FOLLOWS
+////////////////
+Route::get("/follows",[FollowController::class, "getFollows"]);
+Route::post("/addfollows",[FollowController::class, "addFollows"]);
+////////////////
+
+////////////////
+// EXPERIENCE
+////////////////
+Route::get("/experiences",[ExperienceController::class, "getExperience"]);
+Route::post("/addexperiences",[ExperienceController::class, "addExperience"]);
 ////////////////
