@@ -32,14 +32,11 @@ class FollowController extends Controller
         $user_id = $r->user_id;
         $follow_id = $r->follow_id;
         $follow = Follow::all();
-        if($id != null){
-            $follow = $follow->where("id",$id);
-        }
         if($user_id != null){
-            $follow = $follow->where("follow_id",$user_id)->orWhere("user_id",$user_id);
+            $follow = Follow::where("follow_id",$user_id)->orWhere("user_id",$user_id);
         }
-        if($follow_id != null){
-            $follow = $follow->where("follow_id",$follow_id)->orWhere("user_id",$follow_id);
+        else if($follow_id != null){
+            $follow = Follow::where("follow_id",$follow_id)->orWhere("user_id",$follow_id);
         }
         $follow = $follow->values();
         return makeJson(200,"Sukses get follows",$follow);
