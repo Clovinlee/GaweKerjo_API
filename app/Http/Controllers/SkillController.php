@@ -85,4 +85,25 @@ class SkillController extends Controller
 
     }
 
+    public function deleteuserskill(Request $r){
+
+        $id = $r->id;
+        $user_id = $r->user_id;
+
+        try {
+            //code...
+            // $del = DB::table("user_skills")->where("id",'=',$id)->delete();
+
+            $del = user_skill::find($id);
+            $del->delete();
+            return makeJson(200,"Berhasil hapus skill",[$del]);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+
+            return makeJson(400, "Gagal Delete Skill", null);
+        }
+    }
+
+
 }
