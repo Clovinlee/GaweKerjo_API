@@ -46,7 +46,7 @@ class OfferController extends Controller
         $id = $r->id;
         $title = $r->title;
         $skills = $r->skills;
-        $o = Offer::all();
+        $offer = Offer::all();
         if($title != null){
             $offer = Offer::where("title",$title)->orWhere('title', 'like', '%' . $title . '%')->get();
         }
