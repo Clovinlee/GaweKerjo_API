@@ -42,7 +42,7 @@ class OfferController extends Controller
         }
     }
 
-    public function SearchOffer(Request $r){
+    public function searchoffers(Request $r){
         $id = $r->id;
         $title = $r->title;
         $skills = $r->skills;
