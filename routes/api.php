@@ -5,6 +5,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\OrganizationController;
@@ -75,8 +76,8 @@ Route::post("/addlike",[PostController::class,"addPostLike"]);
 ////////////////
 // EDUCATION
 ////////////////
-Route::get("/educations",[UserController::class, "getEducations"]);
-Route::post("/addeducation",[UserController::class, "addEducation"]);
+Route::get("/educations",[EducationController::class, "getEducations"]);
+Route::post("/addeducation",[EducationController::class, "addEducation"]);
 ////////////////
 
 ////////////////
@@ -93,6 +94,7 @@ Route::get("/skills",[SkillController::class, "getSkills"]);
 Route::get("/userskill",[SkillController::class, "getUserSkill"]);
 Route::post("/adduserskill",[SkillController::class, "addUserSkill"]);
 Route::get("/getallskil",[SkillController::class, "getAllSkill"]);
+Route::post("/deleteuserskill",[SkillController::class, "deleteuserskill"]);
 ////////////////
 
 ////////////////
