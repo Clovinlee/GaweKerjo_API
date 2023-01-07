@@ -18,7 +18,7 @@ class EducationController extends Controller
             $educations = $educations->where("user_id",$user_id);
         }
         $educations = $educations->values();
-        return $educations;
+        return makeJson(200, "Success get educations",$educations);
     }
 
     public function addEducation(Request $r){
@@ -29,6 +29,6 @@ class EducationController extends Controller
         $edu->date_end = $r->date_end;
         $edu->score = $r->score;
         $edu->save();
-        return $edu;
+        return makeJson(200, "Success add education",[$edu]);
     }
 }

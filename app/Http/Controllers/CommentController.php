@@ -16,7 +16,7 @@ class CommentController extends Controller
         if ($r->user_id!=null) {
             $c=$c->where("user_id",$r->user_id);
         }
-        return $c->values();
+        return makeJson(200, "Sukses get comment",$c->values());
     }
     public function addComment(Request $r)
     {
@@ -24,5 +24,6 @@ class CommentController extends Controller
         $c->user_id=$r->user_id;
         $c->body=$r->body;
         $c->save();
+        return makeJson(200, "Sukses add comment", [$c]);
     }
 }

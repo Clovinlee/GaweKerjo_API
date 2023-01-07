@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('company_positions', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->references("id")->on("users");
-            $table->foreignId("company_id")->references("id")->on("companies");
             $table->foreignId("position")->references("id")->on("positions");
             $table->timestamps();
         });
