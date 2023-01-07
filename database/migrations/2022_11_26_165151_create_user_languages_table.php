@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('user_languages', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->references("id")->on("users");
-            $table->foreignId("language_id")->references("id")->on("languages");
+            $table->string("language");
             $table->string("level");
             $table->timestamps();
         });
