@@ -123,6 +123,8 @@ Route::post("/addorganizations",[OrganizationController::class, "addOrganization
 // LANGUAGES
 ////////////////
 Route::get("/languages",[LanguageController::class, "getLanguages"]);
+Route::get("/getuserlanguages",[LanguageController::class, "getUserLanguages"]);
+Route::get("/adduserlanguages",[LanguageController::class, "addUserLanguages"]);
 ////////////////
 
 ////////////////
