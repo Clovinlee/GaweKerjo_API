@@ -9,6 +9,19 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     //
+    public function uploadGambar(Request $r)
+    {
+        try {
+            $img=$r->file("uploaded_file");
+            $img->storePubliclyAs("user/",$img->getClientOriginalName());
+            // $id=strtok($img->getClientOriginalName(),".");
+            // $user=User::find($id);
+            // $user->image="user/".$img->getClientOriginalName();
+            // $user->save();
+        } catch (\Throwable $th) {
+            return makeJson("error",$th->getMessage(),null);
+        }
+    }
     public function getUsers(Request $r){
         $id = $r->id;
         $email = $r->email;
