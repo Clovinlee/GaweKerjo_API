@@ -41,4 +41,18 @@ class OfferController extends Controller
             return makeJson(400, $th->getMessage(),[$o]);
         }
     }
+
+    public function searchoffers(Request $r){
+        $id = $r->id;
+        $title = $r->title;
+        $skills = $r->skills;
+        $offer = Offer::all();
+        if($title != null){
+            $offer = Offer::where("title",$title)->orWhere('title', 'like', '%' . $title . '%')->get();
+        }
+        else if($skills != null){
+            $offer = Offer::where("skills",$skills)->orWhere('skills', 'like', '%' . $skills . '%')->get();
+        }
+        return makeJson(200,"Sukses get offers",$offer);
+    }
 }

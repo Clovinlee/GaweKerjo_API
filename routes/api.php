@@ -8,6 +8,8 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\OfferController;
+use App\Http\Controllers\OfferSkillController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SkillController;
@@ -147,5 +149,14 @@ Route::post("/addexperiences",[ExperienceController::class, "addExperience"]);
 // OFFERS
 ////////////////
 Route::get("/offers",[OfferController::class, "getOffers"]);
-Route::post("/addoffer",[OfferController::class, "addOffers"]);
+Route::post("/addoffer",[OfferController::class, "addOffer"]);
+Route::get("/searchoffers",[OfferController::class, "searchoffers"]);
+////////////////
+
+////////////////
+// OFFERS SKILL
+////////////////
+Route::get("/offers_skill",[OfferSkillController::class, "getOfferSkill"]);
+Route::get("/search_offers_skill",[OfferSkillController::class, "search_offers_skill"]);
+Route::post("/addoffer_skill",[OfferSkillController::class, "addOfferSkill"]);
 ////////////////
