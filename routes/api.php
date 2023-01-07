@@ -129,6 +129,7 @@ Route::get("/languages",[LanguageController::class, "getLanguages"]);
 // FOLLOWS
 ////////////////
 Route::get("/follows",[FollowController::class, "getFollows"]);
+Route::get("/searchfollows",[FollowController::class, "searchFollows"]);
 Route::post("/addfollows",[FollowController::class, "addFollows"]);
 ////////////////
 
