@@ -43,6 +43,7 @@ Route::get("/friend",[UserController::class,"getFriends"]);
 Route::get("/newfriend",[UserController::class,"getNewFriend"]);
 Route::post("/register",[UserController::class, "register"]);
 Route::post("/editprofile",[UserController::class, "editProfile"]);
+Route::post("/upload",[UserController::class, "uploadGambar"]);
 
 // Route::post('/register', function (Request $r) {
 //     $user=new User;

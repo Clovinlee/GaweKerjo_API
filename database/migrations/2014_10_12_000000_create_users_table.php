@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string("description")->nullable(true);
-            $table->string("notelp")->nullable(true);;
+            $table->string("notelp")->nullable(true);
+            $table->string("image")->nullable(true);
             $table->string('password');
 
             // 1 -> user, 0 -> company
