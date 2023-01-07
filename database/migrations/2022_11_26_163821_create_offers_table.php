@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId("user_id")->nullable(true)->references("id")->on("users");
             $table->string("title");
             $table->string("body");
+            $table->string("skills");
             $table->timestamps();
         });
     }
