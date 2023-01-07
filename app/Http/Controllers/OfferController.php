@@ -34,6 +34,7 @@ class OfferController extends Controller
             $o->user_id = $r->user_id;
             $o->title = $r->title;
             $o->body = $r->body;
+            $o->skills = $r->skills;
             $o->save();
     
             return makeJson(200, "Success add new offer",[$o]);
