@@ -53,6 +53,7 @@ class PostController extends Controller
         $post->title = $r->title;
         $post->body = $r->body;
         $post->like_count = 0;
+        $post->save();
         return makeJson(200,"Sukses add post",[$post]);
     }
 }
