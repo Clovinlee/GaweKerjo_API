@@ -53,6 +53,6 @@ class OfferController extends Controller
         else if($skills != null){
             $offer = Offer::where("skills",$skills)->orWhere('skills', 'like', '%' . $skills . '%')->get();
         }
-        return makeJson(200,"Sukses get follows",$offer);
+        return makeJson(200,"Sukses get offers",$offer);
     }
 }
