@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->nullable(true)->references("id")->on("users");
-            $table->foreignId("company_id")->nullable(true)->references("id")->on("users");
             $table->string("title");
             $table->string("body");
             $table->timestamps();

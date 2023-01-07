@@ -141,3 +141,10 @@ Route::post("/addfollows",[FollowController::class, "addFollows"]);
 Route::get("/experiences",[ExperienceController::class, "getExperience"]);
 Route::post("/addexperiences",[ExperienceController::class, "addExperience"]);
 ////////////////
+
+////////////////
+// OFFERS
+////////////////
+Route::get("/offers",[OfferController::class, "getOffers"]);
+Route::post("/addoffer",[OfferController::class, "addOffers"]);
+////////////////
