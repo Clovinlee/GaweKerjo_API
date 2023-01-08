@@ -140,6 +140,7 @@ Route::get("/adduserlanguages",[LanguageController::class, "addUserLanguages"]);
 Route::get("/follows",[FollowController::class, "getFollows"]);
 Route::get("/searchfollows",[FollowController::class, "searchFollows"]);
 Route::get("/getunfriend",[FollowController::class, "getunfriend"]);
+Route::get("/searchunfriend",[FollowController::class, "searchunfriend"]);
 Route::post("/addfollows",[FollowController::class, "addFollows"]);
 Route::post("/removefollows",[FollowController::class, "removefollows"]);
 ////////////////
