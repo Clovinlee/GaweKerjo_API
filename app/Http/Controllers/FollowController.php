@@ -48,4 +48,15 @@ class FollowController extends Controller
         $f->save();
         return makeJson(200,"Sukses add follow",[$f]);
     }
+
+    public function removefollows(Request $r){
+        try {
+            $id = $r->id;
+            $f = Follow::find("id",$id);
+            $f->delete();
+            return makeJson(200,"Sukses delete follow",[$f]);
+        } catch (\Throwable $th) {
+            return makeJson(200,"Fail delete follow",null);
+        }
+    }
 }
