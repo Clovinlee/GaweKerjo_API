@@ -46,14 +46,18 @@ class FollowController extends Controller
         $id = $r->id;
         $user_id = $r->user_id;
         $follow_id = $r->follow_id;
-        $usr = User::all();
-        if($user_id != null){
-            $usr = User::whereNotIn("id",$user_id)->orWhereNotIn("id",$user_id)->get();
+        $flw = Follow::where("user_id",$user_id)->orWhere("follow_id",$user_id)->get();
+        $arrUserFriend = [];
+        foreach ($flw as $k => $v) {
+            if($v->user_id == $user_id){
+                array_push($arrUserFriend,$v->follow_id);
+            }else if($v->follow_id == $user_id){
+                array_push($arrUserFriend,$v->user_id);
+            }
         }
-        // else if($follow_id != null){
-        //     $usr = User::whereNotIn("id",$follow_id)->orWhereNotIn("id",$follow_id)->get();
-        // }
-        return makeJson(200,"Sukses get friends/unfriends",$usr);
+        $usrNotFriend = User::wherenotIn("id",$arrUserFriend)->where("id","!=",$user_id)->get();
+
+        return makeJson(200, "Success get not friend user",$usrNotFriend);
     }
 
     public function addFollows(Request $r){
