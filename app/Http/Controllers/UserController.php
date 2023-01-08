@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\chat;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -13,11 +14,11 @@ class UserController extends Controller
     {
         try {
             $img=$r->file("uploaded_file");
-            $img->storePubliclyAs("user/",$img->getClientOriginalName());
-            // $id=strtok($img->getClientOriginalName(),".");
-            // $user=User::find($id);
-            // $user->image="user/".$img->getClientOriginalName();
-            // $user->save();
+            Storage::putFileAs('public/user/',$img,$img->getClientOriginalName());
+            $id=strtok($img->getClientOriginalName(),".");
+            $user=User::find($id);
+            $user->image=Storage::url('public/user/'.$img->getClientOriginalName());
+            $user->save();
         } catch (\Throwable $th) {
             return makeJson("error",$th->getMessage(),null);
         }
