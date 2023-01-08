@@ -8,6 +8,8 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\OfferController;
+use App\Http\Controllers\OfferSkillController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SkillController;
@@ -41,6 +43,7 @@ Route::get("/friend",[UserController::class,"getFriends"]);
 Route::get("/newfriend",[UserController::class,"getNewFriend"]);
 Route::post("/register",[UserController::class, "register"]);
 Route::post("/editprofile",[UserController::class, "editProfile"]);
+Route::post("/upload",[UserController::class, "uploadGambar"]);
 
 // Route::post('/register', function (Request $r) {
 //     $user=new User;
@@ -123,6 +126,9 @@ Route::post("/addorganizations",[OrganizationController::class, "addOrganization
 // LANGUAGES
 ////////////////
 Route::get("/languages",[LanguageController::class, "getLanguages"]);
+Route::get("/getuserlanguages",[LanguageController::class, "getUserLanguages"]);
+Route::post("/adduserlanguages",[LanguageController::class, "addUserLanguages"]);
+Route::post("/deleteuserlanguages",[LanguageController::class, "deleteUserLanguages"]);
 ////////////////
 
 ////////////////
@@ -131,6 +137,7 @@ Route::get("/languages",[LanguageController::class, "getLanguages"]);
 Route::get("/follows",[FollowController::class, "getFollows"]);
 Route::get("/searchfollows",[FollowController::class, "searchFollows"]);
 Route::post("/addfollows",[FollowController::class, "addFollows"]);
+Route::post("/removefollows",[FollowController::class, "removefollows"]);
 ////////////////
 
 ////////////////
@@ -138,4 +145,20 @@ Route::post("/addfollows",[FollowController::class, "addFollows"]);
 ////////////////
 Route::get("/experiences",[ExperienceController::class, "getExperience"]);
 Route::post("/addexperiences",[ExperienceController::class, "addExperience"]);
+////////////////
+
+////////////////
+// OFFERS
+////////////////
+Route::get("/offers",[OfferController::class, "getOffers"]);
+Route::post("/addoffer",[OfferController::class, "addOffer"]);
+Route::get("/searchoffers",[OfferController::class, "searchoffers"]);
+////////////////
+
+////////////////
+// OFFERS SKILL
+////////////////
+Route::get("/offers_skill",[OfferSkillController::class, "getOfferSkill"]);
+Route::get("/search_offers_skill",[OfferSkillController::class, "search_offers_skill"]);
+Route::post("/addoffer_skill",[OfferSkillController::class, "addOfferSkill"]);
 ////////////////

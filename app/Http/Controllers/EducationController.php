@@ -45,7 +45,7 @@ class EducationController extends Controller
             return makeJson(200, "Success add education",[$edu]);
         } catch (\Throwable $th) {
             //throw $th;
-            return makeJson(400, $th->getMessage(), null);
+            return makeJson(400, "Format tanggal tidak sesuai", null);
         }
 
     }
