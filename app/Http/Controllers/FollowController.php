@@ -51,12 +51,12 @@ class FollowController extends Controller
 
     public function removefollows(Request $r){
         try {
-            $f = Follow::where("follow_id",$r->follow_id)->orWhere("follow_id",$r->follow_id)->get();
+            $id = $r->id;
+            $f = Follow::find($id);
             $f->delete();
-            return makeJson(200,"Sukses remove follow",[$f]);
-
+            return makeJson(200,"Sukses delete follow",[$f]);
         } catch (\Throwable $th) {
-            return makeJson(400, "Gagal Delete follow", null);
+            return makeJson(400,$th->getMessage(),null);
         }
     }
 }
