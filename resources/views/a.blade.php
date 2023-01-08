@@ -9,7 +9,7 @@
 <body>
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
-        <input type="file" name="chrisbabi" id="">
+        <input type="file" name="uploaded_file" id="">
         <button type="submit">a</button>
     </form>
 </body>
