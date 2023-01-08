@@ -81,6 +81,7 @@ Route::post("/addlike",[PostController::class,"addPostLike"]);
 ////////////////
 Route::get("/educations",[EducationController::class, "getEducations"]);
 Route::post("/addeducation",[EducationController::class, "addEducation"]);
+Route::post("deleteedu",[EducationController::class, "deleteUserEducation"]);
 ////////////////
 
 ////////////////

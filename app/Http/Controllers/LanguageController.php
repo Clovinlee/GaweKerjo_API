@@ -53,7 +53,7 @@ class LanguageController extends Controller
         try {
             $l = user_language::find($id);
             $l->delete();
-            return makeJson(200, "Success Delete Bahasa", $l);
+            return makeJson(200, "Success Delete Bahasa", [$l]);
         } catch (\Throwable $th) {
             //throw $th;
             return makeJson(400, "Gagal Delete Bahasa", $th->getMessage());
