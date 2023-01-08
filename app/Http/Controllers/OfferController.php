@@ -49,10 +49,10 @@ class OfferController extends Controller
         $skills = $r->skills;
         $offer = Offer::all();
         if($title != null){
-            $offer = Offer::where("title",$title)->orWhere('title', 'like', '%' . $title . '%')->get();
+            $offer = Offer::where('title', 'like', '%' . $title . '%')->orWhere("skills","like","%".$title."%")->get();
         }
         else if($skills != null){
-            $offer = Offer::where("skills",$skills)->orWhere('skills', 'like', '%' . $skills . '%')->get();
+            $offer = Offer::where('title', 'like', '%' . $skills . '%')->orWhere('skills', 'like', '%' . $skills . '%')->get();
         }
         return makeJson(200,"Sukses get offers",$offer);
     }
