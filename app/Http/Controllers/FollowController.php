@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Follow;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 
@@ -41,6 +42,24 @@ class FollowController extends Controller
         return makeJson(200,"Sukses get follows",$follow);
     }
 
+    public function getunfriend(Request $r){
+        $id = $r->id;
+        $user_id = $r->user_id;
+        $follow_id = $r->follow_id;
+        $flw = Follow::where("user_id",$user_id)->orWhere("follow_id",$user_id)->get();
+        $arrUserFriend = [];
+        foreach ($flw as $k => $v) {
+            if($v->user_id == $user_id){
+                array_push($arrUserFriend,$v->follow_id);
+            }else if($v->follow_id == $user_id){
+                array_push($arrUserFriend,$v->user_id);
+            }
+        }
+        $usrNotFriend = User::wherenotIn("id",$arrUserFriend)->where("id","!=",$user_id)->get();
+
+        return makeJson(200, "Success get not friend user",$usrNotFriend);
+    }
+
     public function addFollows(Request $r){
         $f=new Follow();
         $f->user_id=$r->user_id;
@@ -50,11 +69,13 @@ class FollowController extends Controller
     }
 
     public function removefollows(Request $r){
-        // $f=new Follow();
-        // $f->user_id=$r->user_id;
-        // $f->follow_id=$r->follow_id;
-        $f = Follow::find($r->follow_id);
-        $f->delete();
-        return makeJson(200,"Sukses remove follow",[$f]);
+        try {
+            $id = $r->id;
+            $f = Follow::find($id);
+            $f->delete();
+            return makeJson(200,"Sukses delete follow",[$f]);
+        } catch (\Throwable $th) {
+            return makeJson(400,$th->getMessage(),null);
+        }
     }
 }

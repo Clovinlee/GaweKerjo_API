@@ -41,6 +41,7 @@ use Illuminate\Support\Facades\Route;
 Route::get("/users",[UserController::class, "getUsers"]);
 Route::get("/friend",[UserController::class,"getFriends"]);
 Route::get("/newfriend",[UserController::class,"getNewFriend"]);
+Route::get("/searchuser",[UserController::class,"searchuser"]);
 Route::post("/register",[UserController::class, "register"]);
 Route::post("/editprofile",[UserController::class, "editProfile"]);
 Route::post("/upload",[UserController::class, "uploadGambar"]);
@@ -128,8 +129,7 @@ Route::post("/addorganizations",[OrganizationController::class, "addOrganization
 ////////////////
 Route::get("/languages",[LanguageController::class, "getLanguages"]);
 Route::get("/getuserlanguages",[LanguageController::class, "getUserLanguages"]);
-Route::post("/adduserlanguages",[LanguageController::class, "addUserLanguages"]);
-Route::post("/deleteuserlanguages",[LanguageController::class, "deleteUserLanguages"]);
+Route::get("/adduserlanguages",[LanguageController::class, "addUserLanguages"]);
 ////////////////
 
 ////////////////
@@ -137,6 +137,7 @@ Route::post("/deleteuserlanguages",[LanguageController::class, "deleteUserLangua
 ////////////////
 Route::get("/follows",[FollowController::class, "getFollows"]);
 Route::get("/searchfollows",[FollowController::class, "searchFollows"]);
+Route::get("/getunfriend",[FollowController::class, "getunfriend"]);
 Route::post("/addfollows",[FollowController::class, "addFollows"]);
 Route::post("/removefollows",[FollowController::class, "removefollows"]);
 ////////////////
@@ -154,6 +155,8 @@ Route::post("/addexperiences",[ExperienceController::class, "addExperience"]);
 Route::get("/offers",[OfferController::class, "getOffers"]);
 Route::post("/addoffer",[OfferController::class, "addOffer"]);
 Route::get("/searchoffers",[OfferController::class, "searchoffers"]);
+Route::post("/deleteoffer",[OfferController::class, "deleteOffer"]);
+Route::post("/editoffer",[OfferController::class, "editOffer"]);
 ////////////////
 
 ////////////////

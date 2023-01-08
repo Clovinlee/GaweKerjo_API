@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\chat;
+use App\Models\Follow;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -13,11 +15,11 @@ class UserController extends Controller
     {
         try {
             $img=$r->file("uploaded_file");
-            $img->storePubliclyAs("user/",$img->getClientOriginalName());
-            // $id=strtok($img->getClientOriginalName(),".");
-            // $user=User::find($id);
-            // $user->image="user/".$img->getClientOriginalName();
-            // $user->save();
+            Storage::putFileAs('public/user/',$img,$img->getClientOriginalName());
+            $id=strtok($img->getClientOriginalName(),".");
+            $user=User::find($id);
+            $user->image=Storage::url('public/user/'.$img->getClientOriginalName());
+            $user->save();
         } catch (\Throwable $th) {
             return makeJson("error",$th->getMessage(),null);
         }
@@ -48,8 +50,13 @@ class UserController extends Controller
     public function searchUser(Request $r){
         $name = $r->name;
         $email = $r->email;
-        $usr = User::where("name","like","%".$name."%")->where("email","like","%".$email."%")->get();
-        return $usr;
+        try {
+            $usr = User::where("name","like","%".$name."%")->where("email","like","%".$email."%")->get();
+            $usr = $usr->values();
+            return makeJson(200, "Success get user",$usr);
+        } catch (\Throwable $th) {
+            return makeJson(400, $th->getMessage(), null);
+        }
     }
     public function getFriends(Request $r)
     {
@@ -73,11 +80,18 @@ class UserController extends Controller
         foreach ($chat as $key => $c) {
             array_push($friend,($id==$c->user_id) ? User::find($c->recipient_id)->id : User::find($c->user_id)->id);
         }
+        $follow=[];
+        $followed=Follow::where("user_id",$id)->orWhere("follow_id",$id)->get();
+        foreach ($followed as $key => $c) {
+            array_push($follow,($id==$c->user_id) ? User::find($c->follow_id)->id : User::find($c->user_id)->id);
+        }
         $new=User::whereNotIn('id',$friend)
+        ->whereIn('id',$follow)
         ->whereNot('id',$id)
         ->get();
         return makeJson(200,"Berhasil ambil data teman baru",$new);
     }
+    
     public function register(Request $r){
         $usr_exist = User::where("email",$r->email)->get();
         if(count($usr_exist) > 0){

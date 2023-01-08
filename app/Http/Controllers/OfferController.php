@@ -8,6 +8,37 @@ use Illuminate\Http\Request;
 class OfferController extends Controller
 {
     //
+    public function editOffer(Request $r){
+        $id = $r->id;
+        $title = $r->title;
+        $body = $r->body;
+        $skills = $r->skills;
+
+        try {
+            $o = Offer::find($id);
+            $o->title = $title;
+            $o->body = $body;
+            $o->skills = $skills;
+            $o->save();
+
+            return makeJson(200,"Sukses edit offer",[$o]);
+
+        } catch (\Throwable $th) {
+            return makeJson(400, $th->getMessage(),null);
+        }
+    }
+
+    public function deleteOffer(Request $r){
+        $id = $r->id;
+        try {
+            $o = Offer::find($id);
+            $o->delete();
+            return makeJson(200,"Sukses delete offer",[$o]);
+        } catch (\Throwable $th) {
+            return makeJson(400,$th->getMessage(),null);
+        }
+    }
+    
     public function getOffers(Request $r){
         $id = $r->id;
         $user_id = $r->user_id;
