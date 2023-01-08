@@ -8,6 +8,7 @@
 </head>
 <body>
     <form action="" method="post" enctype="multipart/form-data">
+        @csrf
         <input type="file" name="chrisbabi" id="">
         <button type="submit">a</button>
     </form>
