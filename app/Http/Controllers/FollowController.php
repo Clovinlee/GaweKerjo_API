@@ -50,9 +50,9 @@ class FollowController extends Controller
     }
 
     public function removefollows(Request $r){
-        $f=new Follow();
-        $f->user_id=$r->user_id;
-        $f->follow_id=$r->follow_id;
+        // $f=new Follow();
+        // $f->user_id=$r->user_id;
+        // $f->follow_id=$r->follow_id;
         $f = Follow::find($r->follow_id);
         $f->delete();
         return makeJson(200,"Sukses remove follow",[$f]);
