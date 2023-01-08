@@ -78,6 +78,7 @@ class UserController extends Controller
         ->get();
         return makeJson(200,"Berhasil ambil data teman baru",$new);
     }
+    
     public function register(Request $r){
         $usr_exist = User::where("email",$r->email)->get();
         if(count($usr_exist) > 0){
