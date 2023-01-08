@@ -27,6 +27,7 @@ class UserSeeder extends Seeder
             'notelp' => "0812323123",
             'type'=>1,
             'birthdate' => date("Y-m-d", strtotime("2001-04-11")),
+            'image'=>"/storage/user/1.png",
             // 'password' => Hash::make('c'),
             'password' => "c",
             'created_at' => Carbon::now(),
