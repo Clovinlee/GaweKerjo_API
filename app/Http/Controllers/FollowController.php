@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Follow;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 
@@ -39,6 +40,20 @@ class FollowController extends Controller
             $follow = Follow::where("follow_id",$follow_id)->orWhere("user_id",$follow_id)->get();
         }
         return makeJson(200,"Sukses get follows",$follow);
+    }
+
+    public function getunfriend(Request $r){
+        $id = $r->id;
+        $user_id = $r->user_id;
+        $follow_id = $r->follow_id;
+        $usr = User::all();
+        if($user_id != null){
+            $usr = User::whereNotIn("id",$user_id)->orWhereNotIn("id",$user_id)->get();
+        }
+        else if($follow_id != null){
+            $usr = User::whereNotIn("id",$follow_id)->orWhereNotIn("id",$follow_id)->get();
+        }
+        return makeJson(200,"Sukses get friends/unfriends",$usr);
     }
 
     public function addFollows(Request $r){
