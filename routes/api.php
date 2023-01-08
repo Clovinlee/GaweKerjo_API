@@ -75,6 +75,8 @@ Route::post("/addpost",[PostController::class,"addPost"]);
 
 Route::get("/postlikes",[PostController::class,"getPostLikes"]);
 Route::post("/addlike",[PostController::class,"addPostLike"]);
+
+Route::get("/allPostRelated",[PostController::class, "getAllPostRelated"]);
 ////////////////
 
 ////////////////
@@ -82,6 +84,7 @@ Route::post("/addlike",[PostController::class,"addPostLike"]);
 ////////////////
 Route::get("/educations",[EducationController::class, "getEducations"]);
 Route::post("/addeducation",[EducationController::class, "addEducation"]);
+Route::post("deleteedu",[EducationController::class, "deleteUserEducation"]);
 ////////////////
 
 ////////////////
@@ -128,7 +131,8 @@ Route::post("/addorganizations",[OrganizationController::class, "addOrganization
 ////////////////
 Route::get("/languages",[LanguageController::class, "getLanguages"]);
 Route::get("/getuserlanguages",[LanguageController::class, "getUserLanguages"]);
-Route::get("/adduserlanguages",[LanguageController::class, "addUserLanguages"]);
+Route::post("/adduserlanguages",[LanguageController::class, "addUserLanguages"]);
+Route::post("/deleteuserlanguages",[LanguageController::class, "deleteUserLanguages"]);
 ////////////////
 
 ////////////////
@@ -136,6 +140,8 @@ Route::get("/adduserlanguages",[LanguageController::class, "addUserLanguages"]);
 ////////////////
 Route::get("/follows",[FollowController::class, "getFollows"]);
 Route::get("/searchfollows",[FollowController::class, "searchFollows"]);
+Route::get("/getunfriend",[FollowController::class, "getunfriend"]);
+Route::get("/searchunfriend",[FollowController::class, "searchunfriend"]);
 Route::post("/addfollows",[FollowController::class, "addFollows"]);
 Route::post("/removefollows",[FollowController::class, "removefollows"]);
 ////////////////

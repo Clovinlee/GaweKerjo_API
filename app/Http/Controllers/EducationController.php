@@ -49,4 +49,17 @@ class EducationController extends Controller
         }
 
     }
+
+    public function deleteUserEducation(Request $r){
+        $id = $r->id;
+        try {
+            //code...
+            $edu = Education::find($id);
+            $edu->delete();
+            return makeJson(200, "Success Delete  Education", [$edu]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return makeJson(400, "Gagal Delete Education", $th->getMessage());
+        }
+    }
 }

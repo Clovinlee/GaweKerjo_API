@@ -22,5 +22,19 @@ class FollowsSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+
+        DB::table('follows')->insert([
+            "user_id" => 1,
+            "follow_id" => 3,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        DB::table('follows')->insert([
+            "user_id" => 2,
+            "follow_id" => 3,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
     }
 }
