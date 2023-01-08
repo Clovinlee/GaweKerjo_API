@@ -41,6 +41,7 @@ use Illuminate\Support\Facades\Route;
 Route::get("/users",[UserController::class, "getUsers"]);
 Route::get("/friend",[UserController::class,"getFriends"]);
 Route::get("/newfriend",[UserController::class,"getNewFriend"]);
+Route::get("/searchuser",[UserController::class,"searchuser"]);
 Route::post("/register",[UserController::class, "register"]);
 Route::post("/editprofile",[UserController::class, "editProfile"]);
 Route::post("/upload",[UserController::class, "uploadGambar"]);
@@ -127,8 +128,7 @@ Route::post("/addorganizations",[OrganizationController::class, "addOrganization
 ////////////////
 Route::get("/languages",[LanguageController::class, "getLanguages"]);
 Route::get("/getuserlanguages",[LanguageController::class, "getUserLanguages"]);
-Route::post("/adduserlanguages",[LanguageController::class, "addUserLanguages"]);
-Route::post("/deleteuserlanguages",[LanguageController::class, "deleteUserLanguages"]);
+Route::get("/adduserlanguages",[LanguageController::class, "addUserLanguages"]);
 ////////////////
 
 ////////////////
