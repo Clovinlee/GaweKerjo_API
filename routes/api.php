@@ -75,6 +75,8 @@ Route::post("/addpost",[PostController::class,"addPost"]);
 
 Route::get("/postlikes",[PostController::class,"getPostLikes"]);
 Route::post("/addlike",[PostController::class,"addPostLike"]);
+
+Route::get("/allPostRelated",[PostController::class, "getAllPostRelated"]);
 ////////////////
 
 ////////////////
