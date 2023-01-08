@@ -61,7 +61,7 @@ class PostController extends Controller
     public function getAllPostRelated(Request $r){
         try{
             $user_id = $r->user_id;
-            $follow = Follow::where('user_id', $user_id)->orWhere("follow_id", $user_id); 
+            $follow = Follow::where('user_id', $user_id)->orWhere("follow_id", $user_id)->get(); 
             
             $post = Post::all();
 
