@@ -53,7 +53,7 @@ class FollowController extends Controller
         // $f=new Follow();
         // $f->user_id=$r->user_id;
         // $f->follow_id=$r->follow_id;
-        $f = Follow::find($r->follow_id);
+        $f = Follow::where("follow_id",$r->follow_id)->orWhere("follow_id",$r->follow_id)->get();
         $f->delete();
         return makeJson(200,"Sukses remove follow",[$f]);
     }
