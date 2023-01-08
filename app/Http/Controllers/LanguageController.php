@@ -27,22 +27,36 @@ class LanguageController extends Controller
             $l = $l->values();
             return makeJson(200, "Success get user language", $l);
         } catch (\Throwable $th) {
-            return makeJson(200, "Error get user language", $th->getMessage());
+            return makeJson(400, "Error get user language", $th->getMessage());
         }
     }
 
     public function addUserLanguages(Request $r){
         $user_id = $r->user_id;
         $name = $r->name;
+        $level = $r->level;
         try {
             $l = new user_language();
             $l->user_id = $user_id;
-            $l->name = $name;
+            $l->language = $name;
+            $l->level = $level;
             $l->save();
 
-            return makeJson(200,"Success add user language",$l);
+            return makeJson(200,"Success add user language",[$l]);
         } catch (\Throwable $th) {
             return makeJson(400,"Error add user language",$th->getMessage());
+        }
+    }
+
+    public function deleteUserLanguages(Request $r){
+        $id = $r->id;
+        try {
+            $l = user_language::find($id);
+            $l->delete();
+            return makeJson(200, "Success Delete Bahasa", $l);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return makeJson(400, "Gagal Delete Bahasa", $th->getMessage());
         }
     }
 }

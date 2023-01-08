@@ -17,6 +17,12 @@ class OfferSeeder extends Seeder
     {
         //
         DB::table("offers")->insert([
+            'user_id'=>1,
+            "title"=>"Joki Project",
+            "Body"=>"Saya mencari orang yang mau mengjoki proyek saya supaya lebih cepat selesainya. Pekerjaan ini WFH, dan bisa dilakukan dari mana saja. Rapat diadakan setiap weekday (hari bebas menyesuaikan)",
+            "skills"=>"PHP, Laravel, Game Dev, C#, C++, Django, Flutter"
+        ]);
+        DB::table("offers")->insert([
             'user_id'=>5,
             "title"=>"IT Engineer Full Stack Developer",
             "Body"=>"Perusahaan kami sedang mencari full stack developer dengan kriteria skill yang telah dilampirkan, silahkan hubungi apabila anda merasa tertarik dengan tawaran kami. Gaji UMR, Bersedia bekerja di dalam tekanan, Dapat kerja 20 jam per hari.",
@@ -24,9 +30,9 @@ class OfferSeeder extends Seeder
         ]);
         DB::table("offers")->insert([
             'user_id'=>5,
-            "title"=>"Copy Writter",
+            "title"=>"Copy Writer",
             "Body"=>"Perusahaan kami sedang mencari seorang copy writter. Pekerjaan ini bersifat part time, dapat di ikuti oleh mahasiswa jurusan apapun minimal semester 3. Gaji UMK dan bersifat WFH",
-            "skills"=>"Copy writter, Fluent in English"
+            "skills"=>"Copy writer, Fluent in English"
         ]);
         DB::table("offers")->insert([
             'user_id'=>5,
