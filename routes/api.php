@@ -153,6 +153,8 @@ Route::post("/addexperiences",[ExperienceController::class, "addExperience"]);
 Route::get("/offers",[OfferController::class, "getOffers"]);
 Route::post("/addoffer",[OfferController::class, "addOffer"]);
 Route::get("/searchoffers",[OfferController::class, "searchoffers"]);
+Route::post("/deleteoffer",[OfferController::class, "deleteOffer"]);
+Route::post("/editoffer",[OfferController::class, "editOffer"]);
 ////////////////
 
 ////////////////
