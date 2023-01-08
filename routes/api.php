@@ -137,7 +137,7 @@ Route::post("/deleteuserlanguages",[LanguageController::class, "deleteUserLangua
 Route::get("/follows",[FollowController::class, "getFollows"]);
 Route::get("/searchfollows",[FollowController::class, "searchFollows"]);
 Route::post("/addfollows",[FollowController::class, "addFollows"]);
-Route::delete("/removefollows/{follow_id}",[FollowController::class, "removefollows"]);
+Route::post("/removefollows",[FollowController::class, "removefollows"]);
 ////////////////
 
 ////////////////
