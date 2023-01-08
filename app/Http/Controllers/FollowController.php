@@ -50,9 +50,9 @@ class FollowController extends Controller
         if($user_id != null){
             $usr = User::whereNotIn("id",$user_id)->orWhereNotIn("id",$user_id)->get();
         }
-        else if($follow_id != null){
-            $usr = User::whereNotIn("id",$follow_id)->orWhereNotIn("id",$follow_id)->get();
-        }
+        // else if($follow_id != null){
+        //     $usr = User::whereNotIn("id",$follow_id)->orWhereNotIn("id",$follow_id)->get();
+        // }
         return makeJson(200,"Sukses get friends/unfriends",$usr);
     }
 
