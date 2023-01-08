@@ -52,11 +52,11 @@ class FollowController extends Controller
     public function removefollows(Request $r){
         try {
             $id = $r->id;
-            $f = Follow::find("id",$id);
+            $f = Follow::find($id);
             $f->delete();
             return makeJson(200,"Sukses delete follow",[$f]);
         } catch (\Throwable $th) {
-            return makeJson(200,"Fail delete follow",null);
+            return makeJson(200,$th->getMessage(),null);
         }
     }
 }
