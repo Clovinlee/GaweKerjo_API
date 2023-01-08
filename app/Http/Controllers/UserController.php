@@ -48,8 +48,13 @@ class UserController extends Controller
     public function searchUser(Request $r){
         $name = $r->name;
         $email = $r->email;
-        $usr = User::where("name","like","%".$name."%")->where("email","like","%".$email."%")->get();
-        return $usr;
+        try {
+            $usr = User::where("name","like","%".$name."%")->where("email","like","%".$email."%")->get();
+            $usr = $usr->values();
+            return makeJson(200, "Success get user",$usr);
+        } catch (\Throwable $th) {
+            return makeJson(400, $th->getMessage(), null);
+        }
     }
     public function getFriends(Request $r)
     {
