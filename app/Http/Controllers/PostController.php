@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Follow;
 use App\Models\post_like;
 use Illuminate\Http\Request;
 
@@ -55,5 +56,23 @@ class PostController extends Controller
         $post->like_count = 0;
         $post->save();
         return makeJson(200,"Sukses add post",[$post]);
+    }
+
+    public function getAllPostRelated(Request $r){
+        $user_id = $r->user_id;
+        $post = Post::all();
+        $follow = Follow::all();
+        $follow = $follow->where('user_id', $user_id); 
+        
+        if($follow != null){
+            for($i = 0; $i<count($follow); $i++){
+                $post = $post->where("user_id", $follow[$i]->follow_id)->orWhere("user_id", $user_id);
+                $post->values();
+            }
+        }
+        else{
+            $post = $post->where("user_id",$user_id);
+            $post = $post->values();
+        }
     }
 }
