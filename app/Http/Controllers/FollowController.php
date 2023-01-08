@@ -56,7 +56,7 @@ class FollowController extends Controller
             $f->delete();
             return makeJson(200,"Sukses delete follow",[$f]);
         } catch (\Throwable $th) {
-            return makeJson(200,$th->getMessage(),null);
+            return makeJson(400,$th->getMessage(),null);
         }
     }
 }
