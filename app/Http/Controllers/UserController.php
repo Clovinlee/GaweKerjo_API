@@ -127,7 +127,7 @@ class UserController extends Controller
             $user->description = $r->description;
             $user->notelp = $r->notelp;
             $user->gender = $r->gender;
-            $user->birthdate = $r->tempdate;
+            $user->birthdate = $tempdate;
             $user->lokasi = $r->negara;
             $user->save();
 
