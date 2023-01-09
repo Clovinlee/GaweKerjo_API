@@ -164,7 +164,7 @@ class UserController extends Controller
 
             } catch (\Throwable $th) {
                 //throw $th;
-                return makeJson(400, "Format tanggal lahi", null);
+                return makeJson(400, "Format tanggal didirikan tidak sesuai", null);
             }
         }
 
