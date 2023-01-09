@@ -118,22 +118,54 @@ class UserController extends Controller
 
     public function editProfile(Request $r){
 
-        try {
 
-            $tempdate = Carbon::createFromFormat('Y-m-d',$r->tgllahir);
+        $tempdate = null;
+        $user = User::find($r->id);
+        if ($user->type == "1") {
+            # code...
+            try {
+                //code...
+                if($r->tgllahir != null){
+                    $tempdate = Carbon::createFromFormat('Y-m-d',$r->tgllahir);
+                    $user->birthdate = $tempdate;
+                }
 
-            $user = User::find($r->id);
-            $user->name = $r->name;
-            $user->description = $r->description;
-            $user->notelp = $r->notelp;
-            $user->gender = $r->gender;
-            $user->birthdate = $tempdate;
-            $user->lokasi = $r->negara;
-            $user->save();
 
-            return makeJson(200, "Edit Success", [$user]);
-        } catch (\Throwable $th) {
-            return makeJson(400, $th->getMessage(), null);
+                $user->name = $r->name;
+                $user->description = $r->description;
+                $user->notelp = $r->notelp;
+                $user->gender = $r->gender;
+                $user->lokasi = $r->negara;
+
+                $user->save();
+                return makeJson(200, "Edit Success", [$user]);
+            } catch (\Throwable $th) {
+                //throw $th;
+                return makeJson(400, "Format tanggal lahir tidak sesuai", null);
+            }
+        }
+        else{
+            try {
+                //code...
+                if ($r->founded != null) {
+                    # code...
+                    $tempdate = Carbon::createFromFormat('Y-m-d',$r->founded);
+                    $user->founded = $tempdate;
+                }
+
+                $user->name = $r->name;
+                $user->description = $r->description;
+                $user->notelp = $r->notelp;
+                $user->lokasi = $r->negara;
+
+                $user->industry = $r->industry;
+                $user->save();
+                return makeJson(200, "Edit Success", [$user]);
+
+            } catch (\Throwable $th) {
+                //throw $th;
+                return makeJson(400, "Format tanggal lahi", null);
+            }
         }
 
 
