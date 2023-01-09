@@ -21,7 +21,7 @@ class PostController extends Controller
         $awal = $post->like_count;
         $post->like_count = $awal + 1;
         $post->save();
-        
+
         return $post_like;
     }
 
@@ -98,7 +98,16 @@ class PostController extends Controller
     public function removeLike(Request $r){
         $user_id = $r->user_id;
         $post_id = $r->post_id;
-
+        
+        $post = Post::find($post_id);
+        $awal = $post->like_count;
+        if($awal < 0){
+            $post->like_count = $awal - 1;
+        }
+        else{
+            $post->like_count = 0;
+        }
+        
         $post_like = post_like::where("post_id", $post_id)->where('user_id',$user_id)->delete();
         return makeJson(200, "Berhasil unlike post", [$post_like]);
     }
