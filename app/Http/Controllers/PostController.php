@@ -19,19 +19,25 @@ class PostController extends Controller
         return $post_like;
     }
 
-    public function getPostLikes(Request $r){
-        $post_id = $r->post_id;
-        $user_id = $r->user_id;
-        $post_like = post_like::all();
+    // public function getPostLikes(Request $r){
+    //     $post_id = $r->post_id;
+    //     $user_id = $r->user_id;
+    //     $post_like = post_like::all();
         
-        if($post_id != null){
-            $post_like = $post_like->where("post_id",$post_id);
-        }
-        if($user_id != null){
-            $post_like = $post_like->where("user_id",$user_id);
-        }
-        $post_like = $post_like->values();
-        return $post_like;
+    //     if($post_id != null){
+    //         $post_like = $post_like->where("post_id",$post_id);
+    //     }
+    //     if($user_id != null){
+    //         $post_like = $post_like->where("user_id",$user_id);
+    //     }
+    //     $post_like = $post_like->values();
+    //     return $post_like;
+    // }
+
+    public function getPostLikes(Request $r){
+        $user_id = $r->user_id;
+        $post_like = post_like::where("user_id", $user_id)->get();
+        return makeJson(200, "Sukses get like", $post_like);
     }
 
     public function getPosts(Request $r){
