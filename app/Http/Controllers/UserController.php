@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\chat;
 use App\Models\Follow;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -91,7 +92,7 @@ class UserController extends Controller
         ->get();
         return makeJson(200,"Berhasil ambil data teman baru",$new);
     }
-    
+
     public function register(Request $r){
         $usr_exist = User::where("email",$r->email)->get();
         if(count($usr_exist) > 0){
@@ -118,10 +119,16 @@ class UserController extends Controller
     public function editProfile(Request $r){
 
         try {
+
+            $tempdate = Carbon::createFromFormat('Y-m-d',$r->tgllahir);
+
             $user = User::find($r->id);
             $user->name = $r->name;
             $user->description = $r->description;
             $user->notelp = $r->notelp;
+            $user->gender = $r->gender;
+            $user->birthdate = $r->tempdate;
+            $user->lokasi = $r->negara;
             $user->save();
 
             return makeJson(200, "Edit Success", [$user]);
