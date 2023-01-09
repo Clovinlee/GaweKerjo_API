@@ -88,4 +88,12 @@ class PostController extends Controller
             return makeJson(400, $th->getMessage(), null);
         }
     }
+
+    public function removeLike(Request $r){
+        $user_id = $r->user_id;
+        $post_id = $r->post_id;
+
+        $post_like = post_like::where("post_id", $post_id)->where('user_id',$user_id)->delete();
+        return makeJson(200, "Berhasil unlike post", [$post_like]);
+    }
 }
