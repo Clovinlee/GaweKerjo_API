@@ -63,6 +63,7 @@ class EducationController extends Controller
             $edu->date_end = $enddatetemp;
             $edu->score = $r->score;
             $edu->save();
+            return makeJson(200, "Berhasil Edit",[$edu]);
         } catch (\Throwable $th) {
             //throw $th;
             return makeJson(400, "Format tanggal tidak sesuai", null);
