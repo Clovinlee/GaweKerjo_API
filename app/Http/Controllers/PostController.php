@@ -102,10 +102,10 @@ class PostController extends Controller
         $post = Post::find($post_id);
         $awal = $post->like_count;
         if($awal < 0){
-            $post->like_count = $awal - 1;
+            $post->like_count = 0;
         }
         else{
-            $post->like_count = 0;
+            $post->like_count = $awal - 1;
         }
         
         $post_like = post_like::where("post_id", $post_id)->where('user_id',$user_id)->delete();
