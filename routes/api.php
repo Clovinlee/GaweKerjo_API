@@ -86,6 +86,7 @@ Route::get("/allPostRelated",[PostController::class, "getAllPostRelated"]);
 Route::get("/educations",[EducationController::class, "getEducations"]);
 Route::post("/addeducation",[EducationController::class, "addEducation"]);
 Route::post("deleteedu",[EducationController::class, "deleteUserEducation"]);
+Route::post("/updateedu",[EducationController::class, "updateUserEdu"]);
 ////////////////
 
 ////////////////
