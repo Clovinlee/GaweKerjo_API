@@ -107,7 +107,7 @@ class PostController extends Controller
         else{
             $post->like_count = $awal - 1;
         }
-        
+        $post->save();
         $post_like = post_like::where("post_id", $post_id)->where('user_id',$user_id)->delete();
         return makeJson(200, "Berhasil unlike post", [$post_like]);
     }
