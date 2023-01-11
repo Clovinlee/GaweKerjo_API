@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\post_comment;
 use App\Models\post_like;
@@ -116,10 +117,12 @@ class PostController extends Controller
     public function addPostComment(Request $r){
         $user_id = $r->user_id;
         $post_id = $r->post_id;
+        $body = $r->body;
 
-        $post_comment = new post_comment();
+        $post_comment = new Comment();
         $post_comment->user_id = $user_id; 
         $post_comment->post_id = $post_id;
+        $post_comment->body = $body;
         $post_comment->save();
         return makeJson(200,"Berhasil menambahkan komen", [$post_comment]);
     }
