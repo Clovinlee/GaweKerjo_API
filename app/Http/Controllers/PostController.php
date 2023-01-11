@@ -126,4 +126,10 @@ class PostController extends Controller
         $post_comment->save();
         return makeJson(200,"Berhasil menambahkan komen", [$post_comment]);
     }
+
+    public function getAllComment(Request $r){
+        $post_id = $r->post_id;
+        $comment = Comment::where("post_id",$post_id)->get();
+        return makeJson(200,"Sukses get comment", $comment);
+    }
 }
