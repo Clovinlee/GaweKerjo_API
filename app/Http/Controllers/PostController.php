@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Follow;
+use App\Models\post_comment;
 use App\Models\post_like;
 use Illuminate\Http\Request;
 
@@ -112,13 +113,14 @@ class PostController extends Controller
         return makeJson(200, "Berhasil unlike post", [$post_like]);
     }
 
-    public function upCtrLike(Request $r){
+    public function addPostComment(Request $r){
+        $user_id = $r->user_id;
         $post_id = $r->post_id;
-        $cek = $r->cek;
-        $post = Post::find($post_id);
 
-        $awal = $post->liked_count;
-
-        
+        $post_comment = new post_comment();
+        $post_comment->user_id = $user_id; 
+        $post_comment->post_id = $post_id;
+        $post_comment->save();
+        return makeJson(200,"Berhasil menambahkan komen", [$post_comment]);
     }
 }

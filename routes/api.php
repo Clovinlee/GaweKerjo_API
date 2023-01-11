@@ -78,6 +78,8 @@ Route::post("/addlike",[PostController::class,"addPostLike"]);
 Route::post("/deletelike",[PostController::class,"removeLike"]);
 
 Route::get("/allPostRelated",[PostController::class, "getAllPostRelated"]);
+
+Route::get("/addcomment", [PostController::class, "addPostComment"]);
 ////////////////
 
 ////////////////
