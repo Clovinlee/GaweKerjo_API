@@ -16,6 +16,7 @@ class ApiToken
      */
     public function handle(Request $request, Closure $next)
     {
+        return $request->header("api_token");
         if($request->header('api_token') == env('APP_KEY')){
             return $next($request);
         }else{
