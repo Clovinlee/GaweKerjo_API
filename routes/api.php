@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
+Route::middleware("apitoken")->group(function(){
     ////////////////
     // USER
     ////////////////
@@ -109,15 +110,15 @@ use Illuminate\Support\Facades\Route;
     Route::post("/deleteuserskill",[SkillController::class, "deleteuserskill"]);
     ////////////////
 
-    ////////////////
-    // CHATS
-    ////////////////
-    Route::get("/chats",[ChatController::class, "getHChats"]);
-    Route::get("/userchat",[ChatController::class, "getDChats"]);
-    Route::get('/friendtochat',[ChatController::class, "friendtoChat"]);
-    Route::get('/friendtodchat',[ChatController::class, "friendtoDchat"]);
-    Route::post("/addchat",[ChatController::class, "addHchat"]);
-    Route::post("/adduserchat",[ChatController::class, "addDchat"]);
+////////////////
+// CHATS
+////////////////
+Route::get("/chats",[ChatController::class, "getHChats"]);
+Route::get("/userchat",[ChatController::class, "getDChats"]);
+Route::get('/friendtochat',[ChatController::class, "friendtoChat"]);
+Route::get('/friendtodchat',[ChatController::class, "friendtoDchat"]);
+Route::post("/addchat",[ChatController::class, "addHchat"]);
+Route::post("/adduserchat",[ChatController::class, "addDchat"]);
 
     ////////////////
     // COMMENT
@@ -177,3 +178,4 @@ use Illuminate\Support\Facades\Route;
     Route::get("/search_offers_skill",[OfferSkillController::class, "search_offers_skill"]);
     Route::post("/addoffer_skill",[OfferSkillController::class, "addOfferSkill"]);
     ////////////////
+});
