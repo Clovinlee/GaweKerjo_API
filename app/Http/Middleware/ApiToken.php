@@ -16,6 +16,10 @@ class ApiToken
      */
     public function handle(Request $request, Closure $next)
     {
+        if($request->headers("apitoken") == ""){
+            return makeJson(400,"No access token",null);
+        }
+
         if($request->header('apitoken') == env('APP_KEY')){
             return $next($request);
         }else{
