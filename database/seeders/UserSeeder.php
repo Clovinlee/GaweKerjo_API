@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
             'birthdate' => date("Y-m-d", strtotime("2001-04-11")),
             'image'=>"/storage/user/1.png",
             // 'password' => Hash::make('c'),
-            'password' => "c",
+            'password' => Hash::make("c"),
             'created_at' => Carbon::now(),
         ]);
 
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
             'notelp' => "9128391283",
             'birthdate' => date("Y-m-d", strtotime("1995-12-20")),
             // 'password' => Hash::make('b'),
-            'password' => "b",
+            'password' => Hash::make("b"),
             'created_at' => Carbon::now(),
         ]);
 
@@ -55,7 +55,7 @@ class UserSeeder extends Seeder
             'notelp' => "9128391233",
             'birthdate' => date("Y-m-d", strtotime("1890-12-20")),
             // 'password' => Hash::make('b'),
-            'password' => "m",
+            'password' => Hash::make("m"),
             'created_at' => Carbon::now(),
         ]);
 
@@ -66,7 +66,7 @@ class UserSeeder extends Seeder
             "description"=>"Sekolah tinggi",
             "notelp"=>"08123213123",
             "lokasi"=>"Indonesia, Surabaya",
-            "password"=>"istts",
+            "password"=>Hash::make("istts"),
             "created_at"=>Carbon::now()
         ]);
 
@@ -77,7 +77,7 @@ class UserSeeder extends Seeder
             "description"=>"Windows is my windows",
             "lokasi"=>"USA, New York",
             "notelp"=>"01234",
-            "password"=>"microsoft",
+            "password"=>Hash::make("microsoft"),
             "created_at"=>Carbon::now()
         ]);
 
@@ -88,7 +88,7 @@ class UserSeeder extends Seeder
             "description"=>"Apple is tech corporation",
             "lokasi"=>"Britain, UK",
             "notelp"=>"12111",
-            "password"=>"apple",
+            "password"=>Hash::make("apple"),
             "created_at"=>Carbon::now()
         ]);
 
@@ -101,7 +101,7 @@ class UserSeeder extends Seeder
             'notelp' => "12315121",
             'birthdate' => date("Y-m-d", strtotime("1980-11-15")),
             // 'password' => Hash::make('b'),
-            'password' => "d",
+            'password' => Hash::make("d"),
             'created_at' => Carbon::now(),
         ]);
     }

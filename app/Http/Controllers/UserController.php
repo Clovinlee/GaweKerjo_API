@@ -6,6 +6,7 @@ use App\Models\chat;
 use App\Models\Follow;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -38,12 +39,19 @@ class UserController extends Controller
                 $usr = $usr->where("email",$email);
             }
             if($password != null){
-                $usr = $usr->where("password",$password);
+                $arr = [];
+                foreach ($usr as $k => $v) {
+                    if(Hash::check($password, $v->password)){
+                        array_push($arr, $v);
+                    }
+                }
+                $usr = $arr;
+            }else{
+                $usr = $usr->values();
             }
-            $usr = $usr->values();
             return makeJson(200, "Success get user", $usr);
         } catch (\Throwable $th) {
-            return makeJson(400, "Register error, please contact administrator", null);
+            return makeJson(400, $th->getMessage(), null);
         }
     }
 
@@ -103,7 +111,7 @@ class UserController extends Controller
             $user->name = $r->name;
             $user->email = $r->email;
             $user->type = $r->type;
-            $user->password = $r->password;
+            $user->password = Hash::make($r->password);
 
             $user->notelp = $r->notelp;
 
