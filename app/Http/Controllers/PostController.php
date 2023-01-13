@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Comment;
 use App\Models\Follow;
+use App\Models\post_comment;
 use App\Models\post_like;
 use Illuminate\Http\Request;
 
@@ -16,22 +18,34 @@ class PostController extends Controller
         $post_like->user_id = $r->user_id;
         $post_like->post_id = $r->post_id;
         $post_like->save();
+
+        $post = Post::find($r->post_id);
+        $awal = $post->like_count;
+        $post->like_count = $awal + 1;
+        $post->save();
+
         return $post_like;
     }
 
-    public function getPostLikes(Request $r){
-        $post_id = $r->post_id;
-        $user_id = $r->user_id;
-        $post_like = post_like::all();
+    // public function getPostLikes(Request $r){
+    //     $post_id = $r->post_id;
+    //     $user_id = $r->user_id;
+    //     $post_like = post_like::all();
         
-        if($post_id != null){
-            $post_like = $post_like->where("post_id",$post_id);
-        }
-        if($user_id != null){
-            $post_like = $post_like->where("user_id",$user_id);
-        }
-        $post_like = $post_like->values();
-        return $post_like;
+    //     if($post_id != null){
+    //         $post_like = $post_like->where("post_id",$post_id);
+    //     }
+    //     if($user_id != null){
+    //         $post_like = $post_like->where("user_id",$user_id);
+    //     }
+    //     $post_like = $post_like->values();
+    //     return $post_like;
+    // }
+
+    public function getPostLikes(Request $r){
+        $user_id = $r->user_id;
+        $post_like = post_like::where("user_id", $user_id)->get();
+        return makeJson(200, "Sukses get like", $post_like);
     }
 
     public function getPosts(Request $r){
@@ -81,5 +95,41 @@ class PostController extends Controller
         }catch(\Throwable $th){
             return makeJson(400, $th->getMessage(), null);
         }
+    }
+
+    public function removeLike(Request $r){
+        $user_id = $r->user_id;
+        $post_id = $r->post_id;
+        
+        $post = Post::find($post_id);
+        $awal = $post->like_count;
+        if($awal < 0){
+            $post->like_count = 0;
+        }
+        else{
+            $post->like_count = $awal - 1;
+        }
+        $post->save();
+        $post_like = post_like::where("post_id", $post_id)->where('user_id',$user_id)->delete();
+        return makeJson(200, "Berhasil unlike post", [$post_like]);
+    }
+
+    public function addPostComment(Request $r){
+        $user_id = $r->user_id;
+        $post_id = $r->post_id;
+        $body = $r->body;
+
+        $post_comment = new Comment();
+        $post_comment->user_id = $user_id; 
+        $post_comment->post_id = $post_id;
+        $post_comment->body = $body;
+        $post_comment->save();
+        return makeJson(200,"Berhasil menambahkan komen", [$post_comment]);
+    }
+
+    public function getAllComment(Request $r){
+        $post_id = $r->post_id;
+        $comment = Comment::where("post_id",$post_id)->get();
+        return makeJson(200,"Sukses get comment", $comment);
     }
 }

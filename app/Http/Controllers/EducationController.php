@@ -50,6 +50,26 @@ class EducationController extends Controller
 
     }
 
+    public function updateUserEdu(Request $r){
+        $id = $r->id;
+        try {
+            //code...
+            $startdatetemp = Carbon::createFromFormat('Y-m-d',$r->date_start);
+            $enddatetemp = Carbon::createFromFormat('Y-m-d',$r->date_end);
+
+            $edu = Education::find($id);
+            $edu->name = $r->name;
+            $edu->date_start = $startdatetemp;
+            $edu->date_end = $enddatetemp;
+            $edu->score = $r->score;
+            $edu->save();
+            return makeJson(200, "Berhasil Edit",[$edu]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return makeJson(400, "Format tanggal tidak sesuai", null);
+        }
+    }
+
     public function deleteUserEducation(Request $r){
         $id = $r->id;
         try {

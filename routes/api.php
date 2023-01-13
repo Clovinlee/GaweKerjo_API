@@ -75,8 +75,12 @@ Route::post("/addpost",[PostController::class,"addPost"]);
 
 Route::get("/postlikes",[PostController::class,"getPostLikes"]);
 Route::post("/addlike",[PostController::class,"addPostLike"]);
+Route::post("/deletelike",[PostController::class,"removeLike"]);
 
 Route::get("/allPostRelated",[PostController::class, "getAllPostRelated"]);
+
+Route::get("/getComment",[PostController::class, "getAllComment"]);
+Route::post("/addcomment", [PostController::class, "addPostComment"]);
 ////////////////
 
 ////////////////
@@ -85,6 +89,7 @@ Route::get("/allPostRelated",[PostController::class, "getAllPostRelated"]);
 Route::get("/educations",[EducationController::class, "getEducations"]);
 Route::post("/addeducation",[EducationController::class, "addEducation"]);
 Route::post("deleteedu",[EducationController::class, "deleteUserEducation"]);
+Route::post("/updateedu",[EducationController::class, "updateUserEdu"]);
 ////////////////
 
 ////////////////
