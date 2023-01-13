@@ -114,6 +114,8 @@ Route::post("/deleteuserskill",[SkillController::class, "deleteuserskill"]);
 ////////////////
 Route::get("/chats",[ChatController::class, "getHChats"]);
 Route::get("/userchat",[ChatController::class, "getDChats"]);
+Route::get('/friendtochat',[ChatController::class, "friendtoChat"]);
+Route::get('/friendtodchat',[ChatController::class, "friendtoDchat"]);
 Route::post("/addchat",[ChatController::class, "addHchat"]);
 Route::post("/adduserchat",[ChatController::class, "addDchat"]);
 
