@@ -10,6 +10,32 @@ class ChatController extends Controller
 {
     //
 
+    public function friendtoDchat(Request $r)
+    {
+        $hchat=$r->chat_id;
+        $dc=user_chat::where("chat_id",$hchat)->get();
+        return makeJson(200,"Berhasil dapatkan detail chat",$dc);
+    }
+    public function friendtoChat(Request $r)
+    {
+        $user_id=$r->user_id;
+        $recipient_id=$r->recipient_id;
+        $chat=chat::where("user_id",$user_id)
+        ->where("recipient_id",$recipient_id)
+        ->first();
+        if ($chat==null) {
+            $chat=chat::where("user_id",$recipient_id)
+            ->where("recipient_id",$user_id)
+            ->first();
+        }
+        if ($chat==null) {
+            $chat=new chat();
+            $chat->user_id=$user_id;
+            $chat->recipient_id=$recipient_id;
+            $chat->save();
+        }
+        return makeJson(200,"Berhasil dapatkan chat",[$chat]);
+    }
     public function addDchat(Request $r){
         $dc = new user_chat();
         $dc->user_id = $r->user_id;

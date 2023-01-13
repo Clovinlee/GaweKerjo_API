@@ -110,13 +110,15 @@ Route::middleware(["apitoken"])->group(function(){
     Route::post("/deleteuserskill",[SkillController::class, "deleteuserskill"]);
     ////////////////
 
-    ////////////////
-    // CHATS
-    ////////////////
-    Route::get("/chats",[ChatController::class, "getHChats"]);
-    Route::get("/userchat",[ChatController::class, "getDChats"]);
-    Route::post("/addchat",[ChatController::class, "addHchat"]);
-    Route::post("/adduserchat",[ChatController::class, "addDchat"]);
+////////////////
+// CHATS
+////////////////
+Route::get("/chats",[ChatController::class, "getHChats"]);
+Route::get("/userchat",[ChatController::class, "getDChats"]);
+Route::get('/friendtochat',[ChatController::class, "friendtoChat"]);
+Route::get('/friendtodchat',[ChatController::class, "friendtoDchat"]);
+Route::post("/addchat",[ChatController::class, "addHchat"]);
+Route::post("/adduserchat",[ChatController::class, "addDchat"]);
 
     ////////////////
     // COMMENT
