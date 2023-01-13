@@ -16,8 +16,8 @@ class ApiToken
      */
     public function handle(Request $request, Closure $next)
     {
-        return $request->header("api_token");
-        if($request->header('api_token') == env('APP_KEY')){
+        echo($request->header("apitoken"));
+        if($request->header('apitoken') == env('APP_KEY')){
             return $next($request);
         }else{
             return makeJson(400,"Unauthorized access token",null);
