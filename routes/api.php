@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::middleware([""])->group(function(){
+Route::middleware("")->group(function(){
     ////////////////
     // USER
     ////////////////
