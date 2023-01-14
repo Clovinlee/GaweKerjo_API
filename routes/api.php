@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
+Route::middleware("apitoken")->group(function(){
     ////////////////
     // USER
     ////////////////
@@ -177,3 +178,4 @@ Route::post("/adduserchat",[ChatController::class, "addDchat"]);
     Route::get("/search_offers_skill",[OfferSkillController::class, "search_offers_skill"]);
     Route::post("/addoffer_skill",[OfferSkillController::class, "addOfferSkill"]);
     ////////////////
+});
