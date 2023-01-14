@@ -35,8 +35,8 @@ class PostSeeder extends Seeder
 
         DB::table('posts')->insert([
             "user_id" => 1,
-            "title" => "Achievement Dicoding",
-            'body'=>"Saya telah berhasil menyelesaikan course machine learning dan data science dicoding dengan sempurna!",
+            "title" => "Achievement Coursera",
+            'body'=>"Saya telah berhasil menyelesaikan course machine learning dan data science coursera dengan sempurna!",
             'like_count' => 0,
             'created_at' => Carbon::now(),
         ]);
